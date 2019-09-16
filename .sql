@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `sample`;
+/*CREATE DATABASE IF NOT EXISTS `sample`;
 USE `sample`;
 
 CREATE TABLE IF NOT EXISTS `sample_tables` (
@@ -11,4 +11,6 @@ CREATE TABLE IF NOT EXISTS `sample_tables` (
 INSERT INTO `sample_tables` (`sample_key`, `sample_order`, `sample_contents`) VALUES
 	(1, 1, 'sample1'),
   (2, 2, 'sample2'),
-  (3, 3, 'sample3');
+  (3, 3, 'sample3');*/
+
+USE 'module1'
