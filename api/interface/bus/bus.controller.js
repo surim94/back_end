@@ -4,7 +4,7 @@ require('date-utils');
 
 exports.show = (req,res) => {
     return models.Stop.findAll({
-      order: [['busStaId', 'ASC']]
+      order: [['busSeq', 'ASC']]
     })
     .then(data => res.json(data))
     .catch(function (err) {
