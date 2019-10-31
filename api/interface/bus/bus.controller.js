@@ -3,8 +3,18 @@ const systemMessage = require('../../../config/systemMessage');
 require('date-utils');
 
 exports.show = (req,res) => {
+
+    let start = req.query.start;
+    let end = req.query.end;
+
+    if(!start.length || !end.length){
+      start = '0';
+      end = '90';
+    }
+
     return models.Stop.findAll({
-      order: [['busSeq', 'ASC']]
+      order: [['bus_seq', 'ASC']],
+      where: {'bus_seq': '1'}
     })
     .then(data => res.json(data))
     .catch(function (err) {
