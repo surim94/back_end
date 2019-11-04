@@ -12,6 +12,6 @@ router.get('/', controller.show);
 
 //router.put('/:sampleKey', controller.update);
 
-router.post('/', controller.create);
+router.post('/', controller.show);
 
 module.exports = router;

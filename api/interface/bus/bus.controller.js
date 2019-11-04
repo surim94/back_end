@@ -1,28 +1,38 @@
 const models = require('../../model/bus/Bus');
 const systemMessage = require('../../../config/systemMessage');
 require('date-utils');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op
+
+
 
 exports.show = (req,res) => {
-
-    let start = req.query.start;
-    let end = req.query.end;
-
-    if(!start.length || !end.length){
-      start = '0';
-      end = '90';
-    }
-
-    return models.Stop.findAll({
-      order: [['bus_seq', 'ASC']],
-      where: {'bus_seq': '1'}
-    })
-    .then(data => res.json(data))
-    .catch(function (err) {
-        console.log(err);
-        return res.status(500).json(err);
-    });
-};
-
+  console.log(req)
+      let start = req.query.start;
+      let end = req.query.end;
+  
+      console.log('1 : ' + start + ', ' + end);
+  
+      if(!start.length || !end.length){
+        start = '0';
+        end = '90';
+      }
+      console.log('2 : ' + start + ', ' + end);
+  
+      return models.Stop.findAll({
+        where: {
+          bus_seq : {
+              [Op.between]: [start, end],
+            }
+      },
+        order: [['bus_seq', 'ASC']]
+      })
+      .then(data => res.json(data))
+      .catch(function (err) {
+          console.log(err);
+          return res.status(500).json(err);
+      });
+  };
 
 exports.delete = (req, res) => {
   const sampleKey = req.params.sampleKey || '';
