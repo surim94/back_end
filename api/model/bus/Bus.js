@@ -16,6 +16,10 @@ const Stop = server.define('busStop' , {
   }
 }, {underscored:true});
 
+Stop.associate = function(models) {
+  User.belongsTo(models.busComplexity, {foreignKey: 'bus_sta_id', as: 'busComplexity'})
+};
+
 
 module.exports = {
   Stop : Stop
