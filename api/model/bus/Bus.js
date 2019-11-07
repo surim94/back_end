@@ -16,7 +16,7 @@ const Stop = server.define('busStop' , {
   }
 }, {underscored:true});
 
-const Complexity = server.define('busComplexity' , {
+const Complexity = server.define('bus_complexity' , {
   busStaId : {
     type : Sequelize.STRING(50),
     primaryKey : true,
@@ -109,8 +109,8 @@ Complexity.associate = function(models) {
 
 }
 */
-Complexity.belongsTo(Stop);
-Stop.hasOne(Complexity);
+Complexity.belongsTo(Stop, {foreignKey: 'busStaId', targetKey: 'busStaId'});
+Stop.hasOne(Complexity, {foreignKey: 'busStaId',sourceKey: 'busStaId'});
 
 module.exports = {
   Stop : Stop,

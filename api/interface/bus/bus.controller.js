@@ -10,21 +10,20 @@ exports.show = (req,res) => {
   console.log(req)
       let start = req.query.start;
       let end = req.query.end;
-      let time = req.query.time;
-      const selectedTime = req.query.selectedTime;
+      let selectedTime = req.query.selectedTime;
   
-      if(!start.length || !end.length){
+      if(!start.length || !end.length || !selectedTime.length ){
         start = '0';
         end = '90';
+        selectedTime = 'four';
       }
   
       return models.Stop.findAll({
         
         include: [{
           model: models.Complexity,
-          attributes: ['bus_seq', {selectedTime}],
+          attributes: ['seq', [selectedTime, 'complexity']],
         }],
-        
         where: {
           bus_seq : {
               [Op.between]: [start, end],
